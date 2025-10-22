@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Productos - Gestor Inventario{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="fw-bold text-dark">📦 Productos</h2>
+  <a href="/reporte_productos" class="btn btn-outline-dark">📄 Generar PDF</a>
+</div>
+
+<!-- Tabla de productos -->
+<div class="table-responsive mb-4">
+  <table class="table table-striped table-hover align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Stock</th>
+        <th>Stock Mínimo</th>
+        <th>Precio</th>
+        <th>Proveedor</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in productos %}
+      <tr>
+        <td>{{ p[0] }}</td>
+        <td>{{ p[1] }}</td>
+        <td>{{ p[2] }}</td>
+        <td>{{ p[3] }}</td>
+        <td>{{ p[4] }}</td>
+        <td>${{ "{:,.2f}".format(p[5]) }}</td>
+        <td>{{ p[6] }}</td>
+        <td>
+          <a href="/eliminar_producto/{{ p[0] }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Eliminar este producto?')">🗑️ Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Formulario para agregar nuevo producto -->
+<div class="card shadow-sm">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">➕ Agregar nuevo producto</h5>
+  </div>
+  <div class="card-body">
+    <form action="/agregar_producto" method="POST" class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Nombre</label>
+        <input class="form-control" type="text" name="nombre" placeholder="Nombre del producto" required>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Descripción</label>
+        <input class="form-control" type="text" name="descripcion" placeholder="Descripción" required>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Stock</label>
+        <input class="form-control" type="number" name="stock" placeholder="0" required>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Stock Mínimo</label>
+        <input class="form-control" type="number" name="stock_minimo" placeholder="0" required>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Precio</label>
+        <input class="form-control" type="number" step="0.01" name="precio" placeholder="0.00" required>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">ID Proveedor (opcional)</label>
+        <input class="form-control" type="number" name="proveedor" placeholder="ID del proveedor">
+      </div>
+      <div class="col-12 text-end">
+        <button class="btn btn-success mt-3" type="submit">Guardar producto</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

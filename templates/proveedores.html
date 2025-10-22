@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Proveedores{% endblock %}
+
+{% block content %}
+<h2 class="fw-bold mb-3">👥 Proveedores</h2>
+
+<div class="table-responsive mb-4">
+  <table class="table table-striped table-hover align-middle">
+    <thead class="table-dark">
+      <tr><th>ID</th><th>Nombre</th><th>Teléfono</th><th>Dirección</th><th>Acción</th></tr>
+    </thead>
+    <tbody>
+      {% for pr in proveedores %}
+      <tr>
+        <td>{{ pr[0] }}</td><td>{{ pr[1] }}</td><td>{{ pr[2] }}</td><td>{{ pr[3] }}</td>
+        <td>
+          <a href="{{ url_for('eliminar_proveedor', id=pr[0]) }}" class="btn btn-sm btn-outline-danger"
+             onclick="return confirm('¿Eliminar proveedor?')">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<h4 class="fw-bold mb-3">Agregar nuevo proveedor</h4>
+<form action="{{ url_for('agregar_proveedor') }}" method="POST" class="row g-2">
+  <div class="col-md-4"><input class="form-control" name="nombre" placeholder="Nombre" required></div>
+  <div class="col-md-4"><input class="form-control" name="telefono" placeholder="Teléfono"></div>
+  <div class="col-md-4"><input class="form-control" name="direccion" placeholder="Dirección"></div>
+  <div class="col-12"><button class="btn btn-success mt-2" type="submit">Agregar proveedor</button></div>
+</form>
+{% endblock %}

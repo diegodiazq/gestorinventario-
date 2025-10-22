@@ -1,0 +1,12 @@
+body { font-family: Arial, sans-serif; margin: 30px; background:#f7f7f7; color:#222; }
+nav a { margin-right: 10px; color:#0366d6; text-decoration:none; }
+table { width:100%; border-collapse: collapse; margin-bottom: 20px; }
+table, th, td { border: 1px solid #ccc; padding:8px; text-align:left; }
+th { background:#eee; }
+input, select { margin-right:6px; padding:6px; }
+button { padding:6px 10px; }
+.messages { list-style:none; padding:0; }
+.messages li { padding:8px; margin-bottom:8px; border-radius:6px; }
+.success { background:#e6ffed; border:1px solid #6ee7b7; }
+.info { background:#e6f0ff; border:1px solid #90b7ff; }
+.danger { background:#ffe6e6; border:1px solid #ff8a8a; }

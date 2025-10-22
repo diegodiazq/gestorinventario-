@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Gestor Inventario{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+  <h1 class="fw-bold text-primary mb-3">Bienvenido al Gestor de Inventario</h1>
+  <p class="text-muted mb-4">Administra productos, proveedores, entradas y salidas fácilmente.</p>
+
+  <div class="row justify-content-center gx-3">
+    <div class="col-6 col-md-3 mb-3">
+      <a href="/productos" class="btn btn-primary w-100 p-3 shadow">📦 Productos</a>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <a href="/proveedores" class="btn btn-success w-100 p-3 shadow">👥 Proveedores</a>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <a href="/entradas" class="btn btn-info w-100 p-3 shadow">🚪 Entradas</a>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <a href="/salidas" class="btn btn-danger w-100 p-3 shadow">📤 Salidas</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
