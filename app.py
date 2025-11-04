@@ -215,15 +215,12 @@ def eliminar_entrada(id):
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Buscar el producto y cantidad de esa entrada antes de borrarla
     cursor.execute("SELECT id_producto, cantidad FROM entradas WHERE id_entrada = ?", (id,))
     entrada = cursor.fetchone()
 
     if entrada:
         id_producto, cantidad = entrada
-        # Restar del stock actual (porque eliminamos una entrada)
         cursor.execute("UPDATE productos SET stock_actual = stock_actual - ? WHERE id_producto = ?", (cantidad, id_producto))
-        # Eliminar la fila de la tabla entradas
         cursor.execute("DELETE FROM entradas WHERE id_entrada = ?", (id,))
         conn.commit()
 
@@ -237,7 +234,15 @@ def eliminar_salida(id):
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Buscar el producto y cantidad de esa salida antes de borrarla
     cursor.execute("SELECT id_producto, cantidad FROM salidas WHERE id_salida = ?", (id,))
-    salida = cursor.fetc
+    salida = cursor.fetchone()
 
+    if salida:
+        id_producto, cantidad = salida
+        cursor.execute("UPDATE productos SET stock_actual = stock_actual + ? WHERE id_producto = ?", (cantidad, id_producto))
+        cursor.execute("DELETE FROM salidas WHERE id_salida = ?", (id,))
+        conn.commit()
+
+    conn.close()
+    flash("Salida eliminada correctamente y stock actualizado.", "success")
+    return redirect(url_for('salidas'))
