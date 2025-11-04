@@ -208,9 +208,7 @@ def reporte_productos():
     buffer.seek(0)
     return send_file(buffer, as_attachment=True, download_name="reporte_productos.pdf", mimetype='application/pdf')
 
-if __name__ == '__main__':
-    app.run(debug=True)
-    @app.route('/eliminar_entrada/<int:id>', methods=['POST'])
+@app.route('/eliminar_entrada/<int:id>', methods=['POST'])
 def eliminar_entrada(id):
     conn = get_connection()
     cursor = conn.cursor()
@@ -246,3 +244,8 @@ def eliminar_salida(id):
     conn.close()
     flash("Salida eliminada correctamente y stock actualizado.", "success")
     return redirect(url_for('salidas'))
+
+
+# 👇 ESTE BLOQUE SIEMPRE VA AL FINAL, DESPUÉS DE TODO
+if __name__ == '__main__':
+    app.run(debug=True)
