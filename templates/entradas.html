@@ -1,18 +1,60 @@
-<h4 class="fw-bold mb-3">Registrar nueva entrada</h4>
-<form action="{{ url_for('agregar_entrada') }}" method="POST" class="row g-2">
-  <div class="col-md-3">
-    <input class="form-control" type="number" name="id_producto" placeholder="ID Producto" required>
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+  <div class="card shadow p-4">
+    <h4 class="fw-bold mb-3 text-primary">Registrar nueva entrada</h4>
+
+    <form action="{{ url_for('agregar_entrada') }}" method="POST" class="row g-3">
+      <div class="col-md-3">
+        <label for="id_producto" class="form-label fw-semibold">ID Producto</label>
+        <input class="form-control" type="number" name="id_producto" id="id_producto" placeholder="Ej: 1" required>
+      </div>
+
+      <div class="col-md-3">
+        <label for="cantidad" class="form-label fw-semibold">Cantidad</label>
+        <input class="form-control" type="number" name="cantidad" id="cantidad" placeholder="Ej: 5" required>
+      </div>
+
+      <div class="col-md-3">
+        <label for="fecha" class="form-label fw-semibold">Fecha</label>
+        <input class="form-control" type="date" name="fecha" id="fecha" required>
+      </div>
+
+      <div class="col-md-3">
+        <label for="id_proveedor" class="form-label fw-semibold">ID Proveedor</label>
+        <input class="form-control" type="number" name="id_proveedor" id="id_proveedor" placeholder="Ej: 2" required>
+      </div>
+
+      <div class="col-12 text-end">
+        <button class="btn btn-info px-4 mt-3" type="submit">Registrar entrada</button>
+      </div>
+    </form>
   </div>
-  <div class="col-md-3">
-    <input class="form-control" type="number" name="cantidad" placeholder="Cantidad" required>
+
+  <div class="card shadow p-4 mt-4">
+    <h4 class="fw-bold mb-3 text-primary">Historial de Entradas</h4>
+    <table class="table table-striped table-hover">
+      <thead class="table-info">
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Fecha</th>
+          <th>Proveedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entrada in entradas %}
+        <tr>
+          <td>{{ entrada.id_entrada }}</td>
+          <td>{{ entrada.nombre_producto }}</td>
+          <td>{{ entrada.cantidad }}</td>
+          <td>{{ entrada.fecha }}</td>
+          <td>{{ entrada.nombre_proveedor }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
-  <div class="col-md-3">
-    <input class="form-control" type="date" name="fecha" required>
-  </div>
-  <div class="col-md-3">
-    <input class="form-control" type="number" name="id_proveedor" placeholder="ID Proveedor" required>
-  </div>
-  <div class="col-12">
-    <button class="btn btn-info mt-2" type="submit">Registrar entrada</button>
-  </div>
-</form>
+</div>
+{% endblock %}
