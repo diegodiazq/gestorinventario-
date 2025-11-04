@@ -115,6 +115,10 @@ def entradas():
 
 @app.route('/agregar_entrada', methods=['POST'])
 def agregar_entrada():
+    print("📩 Datos recibidos del formulario:", request.form)
+    print("🧠 id_producto =", request.form.get('id_producto'))
+    print("🧠 Todos los nombres de campos:", list(request.form.keys()))
+
     id_producto = int(request.form.get('id_producto'))
     cantidad = int(request.form.get('cantidad'))
     fecha = request.form.get('fecha')
@@ -124,12 +128,14 @@ def agregar_entrada():
     cursor = conn.cursor()
     cursor.execute("INSERT INTO entradas (id_producto, cantidad, fecha, id_proveedor) VALUES (?, ?, ?, ?)",
                    (id_producto, cantidad, fecha, id_proveedor))
+
     # actualizar stock_actual en productos
     cursor.execute("UPDATE productos SET stock_actual = stock_actual + ? WHERE id_producto = ?", (cantidad, id_producto))
     conn.commit()
     conn.close()
     flash('Entrada registrada y stock actualizado.', 'success')
     return redirect(url_for('entradas'))
+
 
 # ----------------- SALIDAS -----------------
 @app.route('/salidas')
