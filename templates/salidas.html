@@ -2,8 +2,7 @@
 {% block title %}Salidas{% endblock %}
 
 {% block content %}
-<h2 class="fw-bold mb-3">📤 Salidas</h2>
-
+<h2 class="fw-bold mb-3">📦 Salidas</h2>
 <div class="table-responsive mb-4">
   <table class="table table-striped table-hover align-middle">
     <thead class="table-dark">
@@ -23,6 +22,8 @@
 <form action="{{ url_for('agregar_salida') }}" method="POST" class="row g-2">
   <div class="col-md-4"><input class="form-control" type="number" name="id_producto" placeholder="ID Producto" required></div>
   <div class="col-md-4"><input class="form-control" type="number" name="cantidad" placeholder="Cantidad" required></div>
-  <div class="col-12"><button class="btn btn-danger mt-2" type="submit">Registrar salida</button></div>
+  <div class="col-md-4"><input class="form-control" type="date" name="fecha" required></div>
+  <div class="col-12"><button class="btn btn-warning mt-2" type="submit">Registrar salida</button></div>
 </form>
+
 {% endblock %}

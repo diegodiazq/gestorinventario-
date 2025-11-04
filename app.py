@@ -99,17 +99,19 @@ def entradas():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT e.id_entrada, e.id_producto, p.nombre, e.cantidad, e.fecha, e.id_proveedor
+        SELECT e.id_entrada, p.nombre, e.cantidad, e.fecha
         FROM entradas e
         JOIN productos p ON e.id_producto = p.id_producto
-        ORDER BY e.fecha DESC
+        ORDER BY e.id_entrada DESC
     """)
     entradas = cursor.fetchall()
-    # para el formulario de agregar entradas
+
     cursor.execute("SELECT id_producto, nombre FROM productos")
     productos = cursor.fetchall()
+
     cursor.execute("SELECT id_proveedor, nombre FROM proveedores")
     proveedores = cursor.fetchall()
+
     conn.close()
     return render_template('entradas.html', entradas=entradas, productos=productos, proveedores=proveedores)
 
@@ -143,16 +145,19 @@ def salidas():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT s.id_salida, s.id_producto, p.nombre, s.cantidad, s.fecha, s.destino
+        SELECT s.id_salida, p.nombre, s.cantidad, s.fecha
         FROM salidas s
         JOIN productos p ON s.id_producto = p.id_producto
-        ORDER BY s.fecha DESC
+        ORDER BY s.id_salida DESC
     """)
     salidas = cursor.fetchall()
+
     cursor.execute("SELECT id_producto, nombre FROM productos")
     productos = cursor.fetchall()
+
     conn.close()
     return render_template('salidas.html', salidas=salidas, productos=productos)
+
 
 @app.route('/agregar_salida', methods=['POST'])
 def agregar_salida():
