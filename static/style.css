@@ -1,55 +1,73 @@
+/* 🎨 Paleta estilo infografía JD Inventory */
+
+/* Colores base */
 :root {
-  --color-principal: #0C4A6E;   /* azul oscuro */
-  --color-secundario: #38BDF8;  /* azul claro */
-  --color-acento: #A7F3D0;      /* verde menta */
-  --color-fondo: #FFFFFF;
-  --color-texto: #1E293B;
+    --azul-oscuro: #0B3D91;
+    --azul-medio: #1C74D9;
+    --verde-menta: #48C1A0;
+    --fondo-claro: #F5F9FF;
+    --texto: #1E2A35;
 }
 
+/* Fondo general */
 body {
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
-  font-family: 'Poppins', sans-serif;
+    background-color: var(--fondo-claro);
+    color: var(--texto);
+    font-family: 'Poppins', sans-serif;
 }
 
-header, nav, footer {
-  background-color: var(--color-principal);
-  color: var(--color-fondo);
-}
-
-.btn-primary {
-  background-color: var(--color-secundario);
-  border: none;
-  color: white;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.btn-primary:hover {
-  background-color: var(--color-principal);
-}
-
-h1, h2, h3 {
-  color: var(--color-principal);
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th {
-  background-color: var(--color-principal);
-  color: white;
-  padding: 8px;
-}
-
-td {
-  border: 1px solid var(--color-acento);
-  padding: 8px;
+/* Navbar */
+.navbar {
+    background-color: var(--azul-oscuro) !important;
 }
 
 .navbar-brand {
-  font-weight: bold;
-  color: var(--color-acento) !important;
+    color: white !important;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.nav-link {
+    color: #E9EEF8 !important;
+}
+
+.nav-link:hover {
+    color: var(--verde-menta) !important;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: var(--azul-medio);
+    border-color: var(--azul-medio);
+}
+
+.btn-primary:hover {
+    background-color: var(--verde-menta);
+    border-color: var(--verde-menta);
+    color: var(--azul-oscuro);
+}
+
+/* Tarjetas y tablas */
+.card {
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    background-color: white;
+}
+
+.table thead {
+    background-color: var(--azul-oscuro);
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #eaf4ff;
+}
+
+/* Footer */
+footer {
+    background-color: var(--azul-oscuro);
+    color: white;
+    padding: 10px;
+    text-align: center;
 }
